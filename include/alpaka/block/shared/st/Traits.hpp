@@ -24,6 +24,7 @@
 #include <alpaka/meta/IsStrictBase.hpp> // meta::IsStrictBase
 
 #include <alpaka/core/Common.hpp>       // ALPAKA_FN_ACC
+#include <alpaka/meta/UniqueId.hpp>     // meta::uniqueId
 
 #include <type_traits>                  // std::enable_if
 
@@ -77,8 +78,8 @@ namespace alpaka
                 //-----------------------------------------------------------------------------
                 template<
                     typename T,
-                    std::size_t TuniqueId,
-                    typename TBlockSharedMemSt>
+                    typename TBlockSharedMemSt,
+                    std::size_t TuniqueId = meta::uniqueId()>
                 ALPAKA_FN_ACC auto allocVar(
                     TBlockSharedMemSt const & blockSharedMemSt)
                 -> T &
@@ -142,6 +143,7 @@ namespace alpaka
                             return
                                 block::shared::st::allocVar<
                                     T,
+                                    typename TBlockSharedMemSt::BlockSharedMemStBase,
                                     TuniqueId>(
                                         static_cast<typename TBlockSharedMemSt::BlockSharedMemStBase const &>(blockSharedMemSt));
                         }

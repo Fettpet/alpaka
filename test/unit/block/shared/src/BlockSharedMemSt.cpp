@@ -91,30 +91,30 @@ public:
     #pragma GCC diagnostic push
     #pragma GCC diagnostic ignored "-Waddress"  // warning: the compiler can assume that the address of ‘a’ will never be NULL [-Waddress]
 #endif
-        auto && a = alpaka::block::shared::st::allocVar<std::uint32_t, __COUNTER__>(acc);
+        auto && a = alpaka::block::shared::st::allocVar<std::uint32_t>(acc);
         BOOST_VERIFY(static_cast<std::uint32_t *>(nullptr) != &a);
 
-        auto && b = alpaka::block::shared::st::allocVar<std::uint32_t, __COUNTER__>(acc);
+        auto && b = alpaka::block::shared::st::allocVar<std::uint32_t>(acc);
         BOOST_VERIFY(static_cast<std::uint32_t *>(nullptr) != &b);
 
-        auto && c = alpaka::block::shared::st::allocVar<float, __COUNTER__>(acc);
+        auto && c = alpaka::block::shared::st::allocVar<float>(acc);
         BOOST_VERIFY(static_cast<float *>(nullptr) != &c);
 
-        auto && d = alpaka::block::shared::st::allocVar<double, __COUNTER__>(acc);
+        auto && d = alpaka::block::shared::st::allocVar<double>(acc);
         BOOST_VERIFY(static_cast<double *>(nullptr) != &d);
 
-        auto && e = alpaka::block::shared::st::allocVar<std::uint64_t, __COUNTER__>(acc);
+        auto && e = alpaka::block::shared::st::allocVar<std::uint64_t>(acc);
         BOOST_VERIFY(static_cast<std::uint64_t *>(nullptr) != &e);
 
 
-        auto && f = alpaka::block::shared::st::allocVar<Array<std::uint32_t, 32>, __COUNTER__>(acc);
-        BOOST_VERIFY(static_cast<std::uint32_t *>(nullptr) != &f[0]);
+        auto && f = alpaka::block::shared::st::allocVar<Array<std::uint32_t, 32u>>(acc);
+        BOOST_VERIFY(static_cast<std::uint32_t *>(nullptr) != &f[0u]);
 
-        auto && g = alpaka::block::shared::st::allocVar<Array<std::uint32_t, 32>, __COUNTER__>(acc);
-        BOOST_VERIFY(static_cast<std::uint32_t *>(nullptr) != &g[0]);
+        auto && g = alpaka::block::shared::st::allocVar<Array<std::uint32_t, 32u>>(acc);
+        BOOST_VERIFY(static_cast<std::uint32_t *>(nullptr) != &g[0u]);
 
-        auto && h = alpaka::block::shared::st::allocVar<Array<double, 16>, __COUNTER__>(acc);
-        BOOST_VERIFY(static_cast<double *>(nullptr) != &h[0]);
+        auto && h = alpaka::block::shared::st::allocVar<Array<double, 16u>>(acc);
+        BOOST_VERIFY(static_cast<double *>(nullptr) != &h[0u]);
 #if BOOST_COMP_GNUC >= BOOST_VERSION_NUMBER(6, 0, 0)
     #pragma GCC diagnostic pop
 #endif
@@ -159,19 +159,19 @@ public:
         TAcc const & acc) const
     -> void
     {
-        auto && a = alpaka::block::shared::st::allocVar<std::uint32_t, __COUNTER__>(acc);
-        auto && b = alpaka::block::shared::st::allocVar<std::uint32_t, __COUNTER__>(acc);
+        auto && a = alpaka::block::shared::st::allocVar<std::uint32_t>(acc);
+        auto && b = alpaka::block::shared::st::allocVar<std::uint32_t>(acc);
         BOOST_VERIFY(&a != &b);
-        auto && c = alpaka::block::shared::st::allocVar<std::uint32_t, __COUNTER__>(acc);
+        auto && c = alpaka::block::shared::st::allocVar<std::uint32_t>(acc);
         BOOST_VERIFY(&b != &c);
         BOOST_VERIFY(&a != &c);
         BOOST_VERIFY(&b != &c);
 
-        auto && d = alpaka::block::shared::st::allocVar<Array<std::uint32_t, 32>, __COUNTER__>(acc);
+        auto && d = alpaka::block::shared::st::allocVar<Array<std::uint32_t, 32u>>(acc);
         BOOST_VERIFY(&a != &d[0]);
         BOOST_VERIFY(&b != &d[0]);
         BOOST_VERIFY(&c != &d[0]);
-        auto && e = alpaka::block::shared::st::allocVar<Array<std::uint32_t, 32>, __COUNTER__>(acc);
+        auto && e = alpaka::block::shared::st::allocVar<Array<std::uint32_t, 32u>>(acc);
         BOOST_VERIFY(&a != &e[0]);
         BOOST_VERIFY(&b != &e[0]);
         BOOST_VERIFY(&c != &e[0]);
