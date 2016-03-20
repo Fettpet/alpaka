@@ -231,8 +231,7 @@ install:
 
     #-------------------------------------------------------------------------------
     # Install cppcheck
-    # FIXME: Use a better static analysis tool. cppcheck does not support c++11 correctly.
-    #- if [ "${ALPAKA_CI_ANALYSIS}" == "ON" ] ;then travis_retry sudo apt-get install cppcheck ;fi
+    - if [ "${ALPAKA_CI_ANALYSIS}" == "ON" ] ;then travis_retry sudo apt-get install cppcheck ;fi
 
     #-------------------------------------------------------------------------------
     # Get the current git version.
@@ -540,11 +539,10 @@ script:
 
     #-------------------------------------------------------------------------------
     # cppcheck
-    #  --inline-suppr
     # Once only with errors returning a failure on error.
-    #- if [ "${ALPAKA_CI_ANALYSIS}" == "ON" ] ;then cppcheck --force --verbose --error-exitcode=1 -j2 vectorAdd/src/ matMul/src/ sharedMem/src/ mandelbrot/src/ ;fi
+    - if [ "${ALPAKA_CI_ANALYSIS}" == "ON" ] ;then cppcheck --force --verbose --inline-suppr --error-exitcode=1 -j2 vectorAdd/src/ matMul/src/ sharedMem/src/ mandelbrot/src/ ;fi
     # Once with warnings but no failure return code.
-    #- if [ "${ALPAKA_CI_ANALYSIS}" == "ON" ] ;then cppcheck --force --verbose --enable=all -j2 vectorAdd/src/ matMul/src/ sharedMem/src/ mandelbrot/src/ ;fi
+    - if [ "${ALPAKA_CI_ANALYSIS}" == "ON" ] ;then cppcheck --force --verbose --inline-suppr --enable=all -j2 vectorAdd/src/ matMul/src/ sharedMem/src/ mandelbrot/src/ ;fi
 
     #-------------------------------------------------------------------------------
     # sanitizers

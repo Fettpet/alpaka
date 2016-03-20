@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1">
+    <includedir>
+        <dir name="../boost/trunk/"/>
+        <dir name="include/"/>
+    </includedir>
+    <defines>
+        <define name="ALPAKA_DEBUG=2"/>
+        <define name="ALPAKA_ACC_CPU_B_SEQ_T_SEQ_ENABLE=ON"/>
+        <define name="ALPAKA_ACC_CPU_B_OMP2_T_SEQ_ENABLE=ON"/>
+        <define name="ALPAKA_ACC_CPU_B_SEQ_T_OMP2_ENABLE=ON"/>
+        <define name="ALPAKA_ACC_CPU_BT_OMP4_ENABLE=ON"/>
+        <define name="ALPAKA_ACC_CPU_B_SEQ_T_THREADS_ENABLE=ON"/>
+        <define name="ALPAKA_ACC_CPU_B_SEQ_T_FIBERS_ENABLE=ON"/>
+        <define name="ALPAKA_ACC_GPU_CUDA_ENABLE=ON"/>
+    </defines>
+    <paths>
+        <dir name="C:/dev/alpaka/example"/>
+        <dir name="C:/dev/alpaka/test"/>
+        <dir name="C:/dev/alpaka/include"/>
+    </paths>
+</project>
