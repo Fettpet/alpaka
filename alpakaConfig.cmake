@@ -338,6 +338,7 @@ IF(ALPAKA_ACC_GPU_CUDA_ENABLE)
 
                 IF(NOT CUDA_VERSION VERSION_LESS 7.5)
                     LIST(APPEND CUDA_NVCC_FLAGS "--expt-extended-lambda")
+                    LIST(APPEND CUDA_NVCC_FLAGS "--expt-relaxed-constexpr")
                 ENDIF()
 
                 FOREACH(_CUDA_ARCH_ELEM ${ALPAKA_CUDA_ARCH})
@@ -348,8 +349,11 @@ IF(ALPAKA_ACC_GPU_CUDA_ENABLE)
 
                 IF(NOT MSVC)
                     LIST(APPEND CUDA_NVCC_FLAGS "-std=c++11")
-                    SET(CUDA_HOST_COMPILER "${CMAKE_CXX_COMPILER}")
+                ELSE()
+                    LIST(APPEND _ALPAKA_COMPILE_DEFINITIONS_PUBLIC "_HAS_ITERATOR_DEBUGGING=0")
                 ENDIF()
+
+                SET(CUDA_HOST_COMPILER "${CMAKE_CXX_COMPILER}")
 
                 if(CMAKE_BUILD_TYPE STREQUAL "Debug" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
                     LIST(APPEND CUDA_NVCC_FLAGS "-g" "-G")

@@ -70,19 +70,19 @@ namespace alpaka
                     //-----------------------------------------------------------------------------
                     //! Copy constructor.
                     //-----------------------------------------------------------------------------
-                    ALPAKA_FN_HOST EventCpuImpl(EventCpuImpl const &) = delete;
+                    EventCpuImpl(EventCpuImpl const &) = delete;
                     //-----------------------------------------------------------------------------
                     //! Move constructor.
                     //-----------------------------------------------------------------------------
-                    ALPAKA_FN_HOST EventCpuImpl(EventCpuImpl &&) = default;
+                    EventCpuImpl(EventCpuImpl &&) = default;
                     //-----------------------------------------------------------------------------
                     //! Copy assignment operator.
                     //-----------------------------------------------------------------------------
-                    ALPAKA_FN_HOST auto operator=(EventCpuImpl const &) -> EventCpuImpl & = delete;
+                    auto operator=(EventCpuImpl const &) -> EventCpuImpl & = delete;
                     //-----------------------------------------------------------------------------
                     //! Move assignment operator.
                     //-----------------------------------------------------------------------------
-                    ALPAKA_FN_HOST auto operator=(EventCpuImpl &&) -> EventCpuImpl & = default;
+                    auto operator=(EventCpuImpl &&) -> EventCpuImpl & = default;
                     //-----------------------------------------------------------------------------
                     //! Destructor.
                     //-----------------------------------------------------------------------------
@@ -127,19 +127,19 @@ namespace alpaka
             //-----------------------------------------------------------------------------
             //! Copy constructor.
             //-----------------------------------------------------------------------------
-            ALPAKA_FN_HOST EventCpu(EventCpu const &) = default;
+            EventCpu(EventCpu const &) = default;
             //-----------------------------------------------------------------------------
             //! Move constructor.
             //-----------------------------------------------------------------------------
-            ALPAKA_FN_HOST EventCpu(EventCpu &&) = default;
+            EventCpu(EventCpu &&) = default;
             //-----------------------------------------------------------------------------
             //! Copy assignment operator.
             //-----------------------------------------------------------------------------
-            ALPAKA_FN_HOST auto operator=(EventCpu const &) -> EventCpu & = default;
+            auto operator=(EventCpu const &) -> EventCpu & = default;
             //-----------------------------------------------------------------------------
             //! Move assignment operator.
             //-----------------------------------------------------------------------------
-            ALPAKA_FN_HOST auto operator=(EventCpu &&) -> EventCpu & = default;
+            auto operator=(EventCpu &&) -> EventCpu & = default;
             //-----------------------------------------------------------------------------
             //! Equality comparison operator.
             //-----------------------------------------------------------------------------
@@ -156,6 +156,10 @@ namespace alpaka
             {
                 return !((*this) == rhs);
             }
+            //-----------------------------------------------------------------------------
+            //! Destructor.
+            //-----------------------------------------------------------------------------
+            ~EventCpu() = default;
 
         public:
             std::shared_ptr<cpu::detail::EventCpuImpl> m_spEventCpuImpl;
