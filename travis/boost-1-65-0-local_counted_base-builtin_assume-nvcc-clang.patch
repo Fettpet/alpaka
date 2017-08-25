@@ -1,0 +1,32 @@
+From 640e4bcbd2f5383e35f52b065d4652b64476f2a2 Mon Sep 17 00:00:00 2001
+From: Benjamin Worpitz <benjaminworpitz@gmail.com>
+Date: Wed, 23 Aug 2017 12:38:10 +0200
+Subject: [PATCH] fix compilation with nvcc+clang
+
+---
+ include/boost/smart_ptr/detail/local_counted_base.hpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/include/boost/smart_ptr/detail/local_counted_base.hpp b/include/boost/smart_ptr/detail/local_counted_base.hpp
+index 398b46d..9e3b253 100644
+--- a/include/boost/smart_ptr/detail/local_counted_base.hpp
++++ b/include/boost/smart_ptr/detail/local_counted_base.hpp
+@@ -60,6 +60,7 @@ public:
+ 
+     void add_ref() BOOST_SP_NOEXCEPT
+     {
++#if !defined(__NVCC__)
+ #if defined( __has_builtin )
+ # if __has_builtin( __builtin_assume )
+ 
+@@ -67,6 +68,7 @@ public:
+ 
+ # endif
+ #endif
++#endif
+ 
+         local_use_count_ = static_cast<count_type>( local_use_count_ + 1 );
+     }
+-- 
+2.7.1.windows.2
+

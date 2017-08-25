@@ -39,6 +39,7 @@ environment:
     global:
         ALPAKA_ACC_CPU_B_SEQ_T_SEQ_ENABLE: ON
         ALPAKA_ACC_CPU_B_SEQ_T_THREADS_ENABLE: ON
+        # Enabling fibers with boost-1.65.0 leads to "fatal error C1060: compiler is out of heap space"
         ALPAKA_ACC_CPU_B_SEQ_T_FIBERS_ENABLE: ON
         ALPAKA_ACC_CPU_B_TBB_T_SEQ_ENABLE: ON
         ALPAKA_ACC_CPU_B_OMP2_T_SEQ_ENABLE: ON
@@ -51,14 +52,16 @@ environment:
     matrix:
         - ALPAKA_DEBUG: 2
           OMP_NUM_THREADS: 4
-          ALPAKA_BOOST_BRANCH: boost-1.64.0
+          ALPAKA_BOOST_BRANCH: boost-1.65.0
           APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+          ALPAKA_ACC_CPU_B_SEQ_T_FIBERS_ENABLE: OFF
         - OMP_NUM_THREADS: 4
           ALPAKA_BOOST_BRANCH: boost-1.64.0
-          APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
         - OMP_NUM_THREADS: 3
-          ALPAKA_BOOST_BRANCH: boost-1.63.0
+          ALPAKA_BOOST_BRANCH: boost-1.65.0
           APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          ALPAKA_ACC_CPU_B_SEQ_T_FIBERS_ENABLE: OFF
         - OMP_NUM_THREADS: 1
           ALPAKA_BOOST_BRANCH: boost-1.62.0
           APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
