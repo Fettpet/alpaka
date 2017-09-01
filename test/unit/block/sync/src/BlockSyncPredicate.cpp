@@ -58,7 +58,6 @@ public:
         TAcc const & acc) const
     -> void
     {
-        using Dim = alpaka::dim::Dim<TAcc>;
         using Size = alpaka::size::Size<TAcc>;
 
         // Get the index of the current thread within the block and the block extent and map them to 1D.
@@ -70,14 +69,14 @@ public:
         // syncBlockThreadsPredicate<alpaka::block::sync::op::Count>
         {
             Size const modulus(2u);
-            int const predicate(blockThreadIdx1D % modulus);
+            int const predicate(static_cast<int>(blockThreadIdx1D % modulus));
             auto const result(alpaka::block::sync::syncBlockThreadsPredicate<alpaka::block::sync::op::Count>(acc, predicate));
             auto const expectedResult(blockThreadExtent1D / modulus);
             BOOST_VERIFY(expectedResult == static_cast<Size>(result));
         }
         {
             Size const modulus(3u);
-            int const predicate(blockThreadIdx1D % modulus);
+            int const predicate(static_cast<int>(blockThreadIdx1D % modulus));
             auto const result(alpaka::block::sync::syncBlockThreadsPredicate<alpaka::block::sync::op::Count>(acc, predicate));
             auto const expectedResult(blockThreadExtent1D - ((blockThreadExtent1D + modulus - static_cast<Size>(1u)) / modulus));
             BOOST_VERIFY(expectedResult == static_cast<Size>(result));
@@ -112,7 +111,7 @@ public:
             BOOST_VERIFY(result == 0);
         }
         {
-            int const predicate(blockThreadIdx1D != 1);
+            int const predicate(static_cast<int>(blockThreadIdx1D != 1));
             auto const result(alpaka::block::sync::syncBlockThreadsPredicate<alpaka::block::sync::op::LogicalOr>(acc, predicate));
             BOOST_VERIFY(result == 1);
         }
